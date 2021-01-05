@@ -1,7 +1,6 @@
 # check in location
 
-    <body class="hold-transition sidebar-mini layout-fixed">
-
+```html
         <div class="content-wrapper">
           <div class="container">
             <div class="row">
@@ -46,9 +45,10 @@
           </section>
           <!-- /.content -->
         </div>
+```
+ในส่วนนี้ให้นำ code ไปแทรกด้านล่าง ก่อนปิด </body>
 
-----
-
+```javascript
       <!-- Script Google map -->
       <script src="https://maps.google.com/maps/api/js?sensor=false"></script>
       <!-- Script Geolocation -->
@@ -94,3 +94,4 @@
           }
         }
       </script>
+```
