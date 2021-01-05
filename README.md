@@ -1,6 +1,6 @@
 # check in location
 
-  ```javascript
+  ```html
   <!DOCTYPE html>
   <html lang="en">
     <head>
