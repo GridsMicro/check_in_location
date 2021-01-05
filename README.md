@@ -1,6 +1,5 @@
 # check in location
 
-  ```html
     <body class="hold-transition sidebar-mini layout-fixed">
 
         <div class="content-wrapper">
@@ -47,9 +46,9 @@
           </section>
           <!-- /.content -->
         </div>
-    ```
+
 ----
-    ```html
+
       <!-- Script Google map -->
       <script src="https://maps.google.com/maps/api/js?sensor=false"></script>
       <!-- Script Geolocation -->
@@ -95,4 +94,3 @@
           }
         }
       </script>
-    ```
