@@ -1,5 +1,6 @@
 # check in location
 
+นำ code นี้ไปแทรกใน body หรือใน container
 ```html
         <div class="content-wrapper">
           <div class="container">
@@ -46,7 +47,7 @@
           <!-- /.content -->
         </div>
 ```
-ในส่วนนี้ให้นำ code ไปแทรกด้านล่าง ก่อนปิด </body>
+ในส่วนนี้ให้นำ code ไปแทรกด้านล่าง ก่อนปิด body
 
 ```javascript
       <!-- Script Google map -->
