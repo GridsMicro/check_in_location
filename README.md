@@ -45,6 +45,7 @@
       <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css" />
 
     </head>
+----    
     <body class="hold-transition sidebar-mini layout-fixed">
 
         <div class="content-wrapper">
@@ -91,7 +92,7 @@
           </section>
           <!-- /.content -->
         </div>
-
+----
       <!-- jQuery -->
       <script src="plugins/jquery/jquery.min.js"></script>
       <!-- jQuery UI 1.11.4 -->
@@ -127,7 +128,7 @@
       <!-- DH.Workflow dashboard demo (This is only for demo purposes) -->
       <script src="dist/js/pages/dashboard.js"></script>
 
-
+----
       <!-- Script Google map -->
       <script src="https://maps.google.com/maps/api/js?sensor=false"></script>
       <!-- Script Geolocation -->
@@ -172,9 +173,4 @@
           }
         }
       </script>
-
-
-    </body>
-  </html>
-
   ```
