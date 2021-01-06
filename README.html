@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>check in time&amp;location</title>
+        <style>
+</style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        
+        
+        
+    </head>
+    <body class="vscode-body">
+        <h1 id="check-in-timelocation">check in time&amp;location</h1>
+<p>php script เอาไว้ใน tag head ใช้สำหรับดึงค่า วันที่/เวลา จาก Server มาแสดงผล</p>
+<pre><code class="language-php"><div>        &lt;script type=<span class="hljs-string">&quot;text/javascript&quot;</span>&gt;
+
+        <span class="hljs-keyword">var</span> currenttime = <span class="hljs-string">&#x27;&lt;?php echo date(&#x27;</span>F j, Y H:i:s<span class="hljs-string">&#x27;); ?&gt;&#x27;</span>;
+        <span class="hljs-keyword">var</span> d=<span class="hljs-keyword">new</span> Date();
+
+        <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">displaytime</span>(<span class="hljs-params"></span>)
+        </span>{
+                d.setSeconds(d.getSeconds()+<span class="hljs-number">1</span>);
+                <span class="hljs-keyword">var</span> s=d.getSeconds();
+                <span class="hljs-keyword">var</span> m=d.getMinutes();
+                <span class="hljs-keyword">var</span> h=d.getHours();
+                <span class="hljs-keyword">var</span> day=d.getDay();
+                <span class="hljs-keyword">var</span> date=d.getDate();
+                <span class="hljs-keyword">var</span> month=d.getMonth();
+                <span class="hljs-keyword">var</span> year=d.getFullYear();
+                <span class="hljs-keyword">var</span> days=<span class="hljs-keyword">new</span> <span class="hljs-keyword">Array</span>(<span class="hljs-string">&quot;อาทิตย์&quot;</span>,<span class="hljs-string">&quot;จันทร์&quot;</span>,<span class="hljs-string">&quot;อังคาร&quot;</span>,<span class="hljs-string">&quot;พุธ&quot;</span>,<span class="hljs-string">&quot;พฤหัส&quot;</span>,<span class="hljs-string">&quot;ศุกร์&quot;</span>,<span class="hljs-string">&quot;เสาร์&quot;</span>);
+                <span class="hljs-keyword">var</span> months=<span class="hljs-keyword">new</span> <span class="hljs-keyword">Array</span>(<span class="hljs-string">&#x27;มกราคา&#x27;</span>,<span class="hljs-string">&#x27;กุมภาพันธ์&#x27;</span>,<span class="hljs-string">&#x27;มีนาคม&#x27;</span>,<span class="hljs-string">&#x27;เมษายน&#x27;</span>,<span class="hljs-string">&#x27;พฤษภาคม&#x27;</span>,<span class="hljs-string">&#x27;มิถุนายน&#x27;</span>,<span class="hljs-string">&#x27;กรกฎาคม&#x27;</span>,<span class="hljs-string">&#x27;สิงหาคม&#x27;</span>,<span class="hljs-string">&#x27;กันยายน&#x27;</span>,<span class="hljs-string">&#x27;ตุลาคม&#x27;</span>,<span class="hljs-string">&#x27;พฤศจิกายน&#x27;</span>,<span class="hljs-string">&#x27;ธันวาคม&#x27;</span>);
+                <span class="hljs-keyword">var</span> date;
+                <span class="hljs-keyword">var</span> time;
+                <span class="hljs-keyword">if</span> (s&lt;<span class="hljs-number">10</span>) {s=<span class="hljs-string">&quot;0&quot;</span> + s}
+                <span class="hljs-keyword">if</span> (m&lt;<span class="hljs-number">10</span>) {m=<span class="hljs-string">&quot;0&quot;</span> + m}
+                <span class="hljs-comment">//if (h&gt;12) {h-=12;am_pm = &quot;pm&quot;}</span>
+                <span class="hljs-comment">//else {am_pm=&quot;am&quot;}</span>
+                <span class="hljs-keyword">if</span> (h&lt;<span class="hljs-number">10</span>) {h=<span class="hljs-string">&quot;0&quot;</span> + h}
+                date = <span class="hljs-string">&quot;วัน&quot;</span> + days[day] + <span class="hljs-string">&quot; ที่ &quot;</span> + date + <span class="hljs-string">&quot; &quot;</span> + months[month] + <span class="hljs-string">&quot; &quot;</span> + year;
+                time = <span class="hljs-string">&quot;เวลา &quot;</span> + h + <span class="hljs-string">&quot;:&quot;</span> + m + <span class="hljs-string">&quot;:&quot;</span> + s;
+                document.getElementById(<span class="hljs-string">&quot;clock&quot;</span>).innerHTML = date + <span class="hljs-string">&#x27;&lt;br /&gt;&#x27;</span> + time;
+                setTimeout(displaytime,<span class="hljs-number">1000</span>);
+        }
+
+        window.onload = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)
+        </span>{
+                displaytime();
+        }
+        &lt;/script&gt;
+</div></code></pre>
+<p>นี่เป็นส่วนของ content, การแสดงผล และ button นำ code นี้ไปแทรกใน body หรือใน container</p>
+<pre><code class="language-html"><div>      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;content-wrapper&quot;</span>&gt;</span>
+        <span class="hljs-comment">&lt;!-- Content Header (Page header) --&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;container&quot;</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;row&quot;</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;col col-sm-12&quot;</span>&gt;</span>
+              <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>  <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;jumbotron&quot;</span> <span class="hljs-attr">align</span>=<span class="hljs-string">&quot;center&quot;</span>&gt;</span>Check In Time&amp;Location<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+          <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+          <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;alert alert-warning alert-dismissible fade show&quot;</span> <span class="hljs-attr">role</span>=<span class="hljs-string">&quot;alert&quot;</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>Note:<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span>The geolocation property is not supported in IE8 and earlier versions.
+            <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;button&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;close&quot;</span> <span class="hljs-attr">data-dismiss</span>=<span class="hljs-string">&quot;alert&quot;</span> <span class="hljs-attr">aria-label</span>=<span class="hljs-string">&quot;Close&quot;</span>&gt;</span>
+              <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">aria-hidden</span>=<span class="hljs-string">&quot;true&quot;</span>&gt;</span><span class="hljs-symbol">&amp;times;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+          <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-comment">&lt;!-- /.content-header --&gt;</span>
+
+        <span class="hljs-comment">&lt;!-- Main content --&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">section</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;content&quot;</span>&gt;</span>
+          <span class="hljs-comment">&lt;!-- Horizontal Form --&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;container&quot;</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;row&quot;</span>&gt;</span>
+              <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;col-sm-4&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+              <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;col col-sm-4&quot;</span>&gt;</span>                
+
+                <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+                  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;button&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;btn btn-primary&quot;</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">&quot;showPosition();&quot;</span>&gt;</span>CHECK IN<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</div></code></pre>
+<p>ส่วนของการแสดงผลวันที่/เวลา</p>
+<pre><code class="language-html"><div>                <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+                <span class="hljs-comment">&lt;!-- on Page Date&amp;Time --&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;text-center&quot;</span>&gt;</span>
+                  <span class="hljs-tag">&lt;<span class="hljs-name">h5</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;heading text-info&quot;</span>&gt;</span>                  
+                    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;clock&quot;</span>&gt;</span>กำลังโหลด...<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>                                
+                  <span class="hljs-tag">&lt;/<span class="hljs-name">h5</span>&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span> 
+</div></code></pre>
+<p>ส่วนของการแสดงผลแผนที่</p>
+<pre><code class="language-html"><div>                <span class="hljs-comment">&lt;!-- onClick.Action embedded in &lt;div&gt; --&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;embedMap&quot;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;width: 325px; height: 280px;&quot;</span>&gt;</span>
+                <span class="hljs-comment">&lt;!-- Google map will be embedded here --&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+                <span class="hljs-comment">&lt;!--------------------------------------&gt;</span>             
+              <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+          <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+          <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;container-fluid&quot;</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;row&quot;</span>&gt;</span>              
+                <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>                     
+            <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>            
+          <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+          <span class="hljs-comment">&lt;!-- /.card --&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">section</span>&gt;</span>
+        <span class="hljs-comment">&lt;!-- /.content --&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</div></code></pre>
+<p>นี่เป็น script สำหรับการตรจสอบ Location ในส่วนนี้ให้นำ code ไปแทรกด้านล่าง ก่อนปิด body</p>
+<pre><code class="language-javascript"><div>      &lt;!-- Script Google map --&gt;
+      <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://maps.google.com/maps/api/js?sensor=false&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span>
+      &lt;!-- Script Geolocation --&gt;
+      
+      <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+        <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">showPosition</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">if</span>(navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showMap, showError);
+          } <span class="hljs-keyword">else</span> {
+            alert(<span class="hljs-string">&quot;Sorry, your browser does not support HTML5 geolocation.&quot;</span>);
+          }
+        } 
+        <span class="hljs-comment">// Define callback function for successful attempt</span>
+        <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">showMap</span>(<span class="hljs-params">position</span>) </span>{
+        <span class="hljs-comment">// Get location data</span>
+          lat = position.coords.latitude;
+          long = position.coords.longitude;
+
+          <span class="hljs-keyword">var</span> latlong = <span class="hljs-keyword">new</span> google.maps.LatLng(lat, long);
+
+          <span class="hljs-keyword">var</span> myOptions = {
+            <span class="hljs-attr">center</span>: latlong,
+            <span class="hljs-attr">zoom</span>: <span class="hljs-number">16</span>,
+            <span class="hljs-attr">mapTypeControl</span>: <span class="hljs-literal">true</span>,
+            <span class="hljs-attr">navigationControlOptions</span>: {
+                <span class="hljs-attr">style</span>:google.maps.NavigationControlStyle.SMALL
+            }
+          } 
+
+          <span class="hljs-keyword">var</span> map = <span class="hljs-keyword">new</span> google.maps.Map(<span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&quot;embedMap&quot;</span>), myOptions);
+          <span class="hljs-keyword">var</span> marker = <span class="hljs-keyword">new</span> google.maps.Marker({ <span class="hljs-attr">position</span>:latlong, <span class="hljs-attr">map</span>:map, <span class="hljs-attr">title</span>:<span class="hljs-string">&quot;You are here!&quot;</span> });
+        } 
+        <span class="hljs-comment">// Define callback function for failed attempt</span>
+        <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">showError</span>(<span class="hljs-params">error</span>) </span>{
+          <span class="hljs-keyword">if</span>(error.code == <span class="hljs-number">1</span>) {
+            result.innerHTML = <span class="hljs-string">&quot;You&#x27;ve decided not to share your position, but it&#x27;s OK. We won&#x27;t ask you again.&quot;</span>;
+          } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(error.code == <span class="hljs-number">2</span>) {
+            result.innerHTML = <span class="hljs-string">&quot;The network is down or the positioning service can&#x27;t be reached.&quot;</span>;
+          } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(error.code == <span class="hljs-number">3</span>) {
+            result.innerHTML = <span class="hljs-string">&quot;The attempt timed out before it could get the location data.&quot;</span>;
+          } <span class="hljs-keyword">else</span> {
+            result.innerHTML = <span class="hljs-string">&quot;Geolocation failed due to unknown error.&quot;</span>;
+          }
+        }
+      </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span>
+</div></code></pre>
+
+    </body>
+    </html>

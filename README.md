@@ -47,7 +47,7 @@ php script เอาไว้ใน tag head ใช้สำหรับดึ�
         <div class="container">
           <div class="row">
             <div class="col col-sm-12">
-              <h3  class="jumbotron" align="center">DH Check In Location - bete</h3>
+              <h3  class="jumbotron" align="center">Check In Time&Location</h3>
             </div>
           </div>
 
